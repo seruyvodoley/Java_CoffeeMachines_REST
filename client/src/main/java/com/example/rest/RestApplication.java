@@ -40,7 +40,7 @@ public class RestApplication {
      * Получает все кофемашины от сервера
      */
     public void createGetRequest(){
-        String url = "http://localhost:8080/api/coffee-machines";
+        String url = "http://localhost:8090/api/coffee-machines";
         ResponseEntity<CoffeeMachine[]> response = restTemplate.getForEntity(url, CoffeeMachine[].class);
         System.out.println("Response Code: " + response.getStatusCode());
         System.out.println("Response headers:");
@@ -61,7 +61,7 @@ public class RestApplication {
      * @param id индекс запрашиваемой кофемашины
      */
     public void createGetByIDRequest(Integer id){
-        String url = "http://localhost:8080/api/coffee-machines/" + id;
+        String url = "http://localhost:8090/api/coffee-machines/" + id;
         try {
             ResponseEntity<CoffeeMachine> response = restTemplate.getForEntity(url, CoffeeMachine.class);
             System.out.println("Response Code: " + response.getStatusCode());
@@ -85,7 +85,7 @@ public class RestApplication {
      * @param coffeeMachine новая кофемашина
      */
     public void createPostRequest(CoffeeMachine coffeeMachine){
-        String url = "http://localhost:8080/api/coffee-machines";
+        String url = "http://localhost:8090/api/coffee-machines";
         ObjectMapper mapper = new ObjectMapper();
         try{
             String coffeeMachineJson = mapper.writeValueAsString(coffeeMachine);
@@ -112,7 +112,7 @@ public class RestApplication {
      * @param coffeeMachine изменённая кофемашина
      */
     public void createPutRequest(Integer id, CoffeeMachine coffeeMachine){
-        String url = "http://localhost:8080/api/coffee-machines/" + id;
+        String url = "http://localhost:8090/api/coffee-machines/" + id;
         ObjectMapper mapper = new ObjectMapper();
         try{
             String coffeeMachineJson = mapper.writeValueAsString(coffeeMachine);
@@ -143,7 +143,7 @@ public class RestApplication {
      */
     public void createDeleteRequest(Integer id){
         try {
-            restTemplate.delete("http://localhost:8080/api/coffee-machines/delete/" + id);
+            restTemplate.delete("http://localhost:8090/api/coffee-machines/delete/" + id);
             System.out.println("CoffeeMachine with id " + id + " deleted successfully");
         } catch (HttpClientErrorException e) {
             if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
